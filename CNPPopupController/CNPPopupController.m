@@ -139,8 +139,18 @@ extern CNPTopBottomPadding CNPTopBottomPaddingMake(CGFloat top, CGFloat bottom) 
     if (self.contents) {
         for (NSObject *content in self.contents) {
             if ([content isKindOfClass:[NSAttributedString class]]) {
-                UILabel *label = [self multilineLabelWithAttributedString:(NSAttributedString *)content];
-                [self.contentView addSubview:label];
+                //UILabel *label = [self multilineLabelWithAttributedString:(NSAttributedString *)content];
+                //[self.contentView addSubview:label];
+                //UILabel *label = [self multilineLabelWithAttributedString:(NSAttributedString *)content];
+                //[self.contentView addSubview:label];
+                UITextView *tview = [[UITextView alloc]initWithFrame:CGRectMake([UIScreen mainScreen].bounds.origin.x + 15, 90, [UIScreen mainScreen].bounds.size.width - 70, [UIScreen mainScreen].bounds.size.height - 300)];
+                tview.attributedText = (NSAttributedString *)content;
+                //tview.backgroundColor = [UIColor lightGrayColor];
+                tview.scrollEnabled = YES;
+                tview.font = [UIFont systemFontOfSize:20];
+                //[tview sizeToFit];
+                tview.editable = NO;
+                [self.contentView addSubview:tview];
             }
             else if ([content isKindOfClass:[UIImage class]]) {
                 UIImageView *imageView = [self centeredImageViewForImage:(UIImage *)content];
